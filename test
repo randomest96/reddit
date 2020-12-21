@@ -1,0 +1,15 @@
+name = ""
+stats = {"hp" : 0,"strength":0,"luck":0}
+
+def charCreator(name):
+    stats["hp"] += 2
+    stats["strength"] += 3
+    stats["luck"] += 4
+    return print(stats)
+
+def game():
+    print(stats)
+charCreator(name)
+
+    
+game()
