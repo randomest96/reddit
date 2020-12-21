@@ -1,0 +1,65 @@
+
+import json
+import os.path
+name = ""
+save = ""
+attributes = {"health":0,"strength":0,"speed":0,"magic attack":0}
+
+def createCharacter(name):
+    name = input("Enter your name: ")
+    skill=20
+   
+    if os.path.isfile(f"{name}.txt"):
+        with open(f"{name}.txt") as f:
+            data = f.read()
+        print("Before:" , type(data))
+        attributes = json.loads(data)
+        print("After:" , type(attributes))
+        print(attributes["health"])
+        return print(attributes)
+    else:
+        
+    
+    
+        while skill>0:
+            if skill<20:
+                choice = int(input("(1.Health/2.Strength/3.Speed/4.Magic attack):"))
+            else:
+                choice = int(input("You can now use your skill points,Choose carefully as it affects your fighting ability: (1.Health/2.Strength/3.Speed/4.Magic attack)"))
+            points = int(input(f"How many points would you like to add to that skill?(You have {skill} remaining): "))
+        
+        
+        
+        
+            if points>skill:
+                if choice == 1:
+                    attributes["health"] += skill
+                elif choice == 2:
+                    attributes["strength"] += skill
+                elif choice == 3:
+                    attributes["speed"] += skill
+                elif choice == 4:
+                    attributes["magic attack"] += skill
+            else:
+        
+                if choice == 1:
+                    attributes["health"] += points
+                elif choice == 2:
+                    attributes["strength"] += points
+                elif choice == 3:
+                    attributes["speed"] += points
+                elif choice == 4:
+                    attributes["magic attack"] += points
+                else:
+                    print("Error")
+            skill -= points
+        json.dump(attributes, open(f"{name}.txt", "w"))
+    
+        return print(attributes)
+ 
+def game():
+    print(attributes)
+    
+
+createCharacter(name)
+game()
